@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -93,6 +94,28 @@ public class Main {
         System.out.println("Game Indexes: " + indexes);
     }
 
+    private static void testOptional() {
+        var optional = Optional.of("Hello, World!");
+        Consumer<String> printer = (str) -> System.out.println(str);
+
+        optional.ifPresent(printer);
+    }
+
+    private static void testOptionalDefaultValue() {
+        var optional = Optional.ofNullable(null);
+        var value = optional.orElseGet(() -> "Default Value");
+        optional.ifPresentOrElse(
+                (str) -> System.out.println("Value Present: " + str),
+                () -> System.out.println("No Value Present"));
+
+        System.out.println("Optional Default Value: " + value);
+    }
+
+    private static void testOptionalException() {
+         var optional = Optional.ofNullable(null);
+         optional.orElseThrow(() -> new RuntimeException("No Value Present"));
+    }
+
     public static void main(String[] args) {
         Main.testConsumer();
         Main.testSupplier();
@@ -103,5 +126,15 @@ public class Main {
         Main.testReduceAsSum();
         Main.testReduceAsObject();
         Main.testReduceAsIndex();
+        Main.testOptional();
+        Main.testOptionalDefaultValue();
+        
+
+        try {
+            Main.testOptionalException();
+        } catch (Exception e) {
+            System.out.println("Exception Caught from Optional: " + e.getMessage()); 
+        }
+
     }
 }
