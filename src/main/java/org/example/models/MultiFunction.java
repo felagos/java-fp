@@ -1,4 +1,4 @@
-package org.example;
+package org.example.models;
 
 /**
  * Functional interface that takes a variable number of parameters and returns a result

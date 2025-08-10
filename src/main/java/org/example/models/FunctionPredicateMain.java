@@ -1,4 +1,4 @@
-package org.example;
+package org.example.models;
 
 import java.util.List;
 import java.util.function.Predicate;

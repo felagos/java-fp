@@ -3,6 +3,9 @@ package org.example;
 import java.util.HashMap;
 import java.util.List;
 
+import org.example.models.Games;
+import org.example.models.IntegerWrapper;
+
 public class ListOperatorsMain {
 
     private static void testMap() {

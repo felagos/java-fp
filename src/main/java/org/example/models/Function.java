@@ -1,4 +1,4 @@
-package org.example;
+package org.example.models;
 
 @FunctionalInterface
 public interface Function<T, R> {
