@@ -85,9 +85,9 @@ public class Main {
                             acc.put(curr.getId(), curr);
                             return acc;
                         },
-                        (index1, index2) -> {
-                            index1.putAll(index2);
-                            return index1;
+                        (acc1, acc2) -> {
+                            acc1.putAll(acc2);
+                            return acc1;
                         });
 
         System.out.println("Game Indexes: " + indexes);
