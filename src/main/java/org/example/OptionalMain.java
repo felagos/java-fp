@@ -23,19 +23,18 @@ public class OptionalMain {
     }
 
     private static void testOptionalException() {
-         var optional = Optional.ofNullable(null);
-         optional.orElseThrow(() -> new RuntimeException("No Value Present"));
+        var optional = Optional.ofNullable(null);
+        optional.orElseThrow(() -> new RuntimeException("No Value Present"));
     }
 
     public static void main(String[] args) {
         OptionalMain.testOptional();
         OptionalMain.testOptionalDefaultValue();
-       
 
         try {
             OptionalMain.testOptionalException();
         } catch (Exception e) {
-            System.out.println("Exception Caught from Optional: " + e.getMessage()); 
+            System.out.println("Exception Caught from Optional: " + e.getMessage());
         }
 
     }

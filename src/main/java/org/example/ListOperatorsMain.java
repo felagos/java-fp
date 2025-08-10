@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ListOperatorsMain {
 
-        private static void testMap() {
+    private static void testMap() {
         var fruits = List.of("Apple", "Banana", "Cherry");
         var fruitsUpperCase = fruits.stream()
                 .map(s -> s.toUpperCase())
