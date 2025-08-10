@@ -1,7 +1,11 @@
-package org.example.models;
+package org.example;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import org.example.models.CustomFunction;
+import org.example.models.Function;
+import org.example.models.MultiFunction;
 
 public class FunctionPredicateMain {
 
