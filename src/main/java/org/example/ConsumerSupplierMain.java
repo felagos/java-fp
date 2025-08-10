@@ -3,7 +3,7 @@ package org.example;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ConsumerMain {
+public class ConsumerSupplierMain {
 
     private static void testConsumer() {
         Consumer<String> consumer = (s) -> System.out.println(s);
@@ -17,8 +17,8 @@ public class ConsumerMain {
     }
 
     public static void main(String[] args) {
-        ConsumerMain.testConsumer();
-        ConsumerMain.testSupplier();
+        ConsumerSupplierMain.testConsumer();
+        ConsumerSupplierMain.testSupplier();
     }
 
 }
