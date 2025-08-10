@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class FunctionPredicateMain {
@@ -46,12 +47,28 @@ public class FunctionPredicateMain {
         System.out.println("Sum of 1,2,3,4,5: " + result);
     }
 
+    private static void testFunctionConcatString() {
+        MultiFunction<String, String> concat = (strings) -> {
+            var strList = List.of(strings);
+
+            return strList.stream().reduce(
+                    new StringBuilder(),
+                    (acc, str) -> acc.append(str),
+                    (str1, str2) -> str1.append(str2))
+                    .toString();
+        };
+
+        var result = concat.apply("Hello", " ", "World", "!");
+        System.out.println("Concatenated String: " + result);
+    }
+
     public static void main(String[] args) {
         FunctionPredicateMain.testFunction();
         FunctionPredicateMain.testPredicate();
         FunctionPredicateMain.testCustomFunction();
         FunctionPredicateMain.testFunctionAsParameter();
         FunctionPredicateMain.testFunctionDynamicParameters();
+        FunctionPredicateMain.testFunctionConcatString();
     }
 
 }
