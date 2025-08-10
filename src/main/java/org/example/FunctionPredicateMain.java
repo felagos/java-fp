@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import org.example.models.CustomFunction;
 import org.example.models.Function;
 import org.example.models.MultiFunction;
+import org.example.models.MultiPredicate;
 
 public class FunctionPredicateMain {
 
@@ -66,6 +67,74 @@ public class FunctionPredicateMain {
         System.out.println("Concatenated String: " + result);
     }
 
+    private static void testMultiPredicateAllEven() {
+        MultiPredicate<Integer> allEven = numbers -> {
+            for (Integer num : numbers) {
+                if (num % 2 != 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        boolean result1 = allEven.test(2, 4, 6, 8);
+        boolean result2 = allEven.test(2, 4, 5, 8);
+
+        System.out.println("Are all numbers (2,4,6,8) even? " + result1);
+        System.out.println("Are all numbers (2,4,5,8) even? " + result2);
+    }
+
+    private static void testMultiPredicateAllPositive() {
+        MultiPredicate<Number> allPositive = numbers -> {
+            for (Number num : numbers) {
+                if (num.doubleValue() <= 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        boolean result1 = allPositive.test(1, 2.5, 3, 4.7);
+        boolean result2 = allPositive.test(1, -2.5, 3, 4.7);
+
+        System.out.println("Are all numbers (1, 2.5, 3, 4.7) positive? " + result1);
+        System.out.println("Are all numbers (1, -2.5, 3, 4.7) positive? " + result2);
+    }
+
+    private static void testMultiPredicateStringLength() {
+        MultiPredicate<String> allLongEnough = strings -> {
+            for (String str : strings) {
+                if (str.length() < 3) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        boolean result1 = allLongEnough.test("Hello", "World", "Java");
+        boolean result2 = allLongEnough.test("Hello", "Hi", "Java");
+
+        System.out.println("Are all strings (Hello, World, Java) at least 3 chars? " + result1);
+        System.out.println("Are all strings (Hello, Hi, Java) at least 3 chars? " + result2);
+    }
+
+    private static void testMultiPredicateAnyType() {
+        MultiPredicate<Object> allNotNull = objects -> {
+            for (Object obj : objects) {
+                if (obj == null) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        boolean result1 = allNotNull.test("Hello", 42, 3.14, true);
+        boolean result2 = allNotNull.test("Hello", null, 3.14, true);
+
+        System.out.println("Are all objects (String, Integer, Double, Boolean) not null? " + result1);
+        System.out.println("Are all objects (String, null, Double, Boolean) not null? " + result2);
+    }
+
     public static void main(String[] args) {
         FunctionPredicateMain.testFunction();
         FunctionPredicateMain.testPredicate();
@@ -73,6 +142,12 @@ public class FunctionPredicateMain {
         FunctionPredicateMain.testFunctionAsParameter();
         FunctionPredicateMain.testFunctionDynamicParameters();
         FunctionPredicateMain.testFunctionConcatString();
+
+        System.out.println("\n=== Testing Multi Predicates ===");
+        FunctionPredicateMain.testMultiPredicateAllEven();
+        FunctionPredicateMain.testMultiPredicateAllPositive();
+        FunctionPredicateMain.testMultiPredicateStringLength();
+        FunctionPredicateMain.testMultiPredicateAnyType();
     }
 
 }
