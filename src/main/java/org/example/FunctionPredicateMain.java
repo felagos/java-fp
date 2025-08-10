@@ -23,10 +23,35 @@ public class FunctionPredicateMain {
         System.out.println("Concatenated String: " + result);
     }
 
+    private static <T, R> R applyFunction(Function<T, R> function, T input) {
+        return function.apply(input);
+    }
+
+    private static void testFunctionAsParameter() {
+        Function<Integer, String> intToString = (i) -> "Number: " + i;
+        String result = applyFunction(intToString, 42);
+        System.out.println("Result from Function as Parameter: " + result);
+    }
+
+    private static void testFunctionDynamicParameters() {
+        MultiFunction<Integer, Integer> sumAll = numbers -> {
+            int sum = 0;
+            for (Integer num : numbers) {
+                sum += num;
+            }
+            return sum;
+        };
+
+        var result = sumAll.apply(1, 2, 3, 4, 5);
+        System.out.println("Sum of 1,2,3,4,5: " + result);
+    }
+
     public static void main(String[] args) {
         FunctionPredicateMain.testFunction();
         FunctionPredicateMain.testPredicate();
         FunctionPredicateMain.testCustomFunction();
+        FunctionPredicateMain.testFunctionAsParameter();
+        FunctionPredicateMain.testFunctionDynamicParameters();
     }
 
 }
