@@ -24,12 +24,12 @@ public class MatchListMain {
                 boolean areNotCoursesWithExcellentReviews = courses.stream()
                                 .noneMatch(course -> course.reviewScore() == 7);
 
-                var comparatorByNumberOfStudents = Comparator.comparing(Course::numberOfStudents, (nro1, nro2) -> {
+                var comparatorByNumberOfStudentsAsc = Comparator.comparing(Course::numberOfStudents, (nro1, nro2) -> {
                         return Integer.compare(nro1, nro2);
                 });
 
                 var sortedCoursesByNroOfStudents = courses.stream()
-                                .sorted(comparatorByNumberOfStudents)
+                                .sorted(comparatorByNumberOfStudentsAsc)
                                 .toList();
 
                 System.out.println("Has all courses with more than 150 students: " + hasAllCoursesHigherThan150);
