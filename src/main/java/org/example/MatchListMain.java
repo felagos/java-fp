@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Comparator;
 import java.util.List;
 import org.example.models.Course;
 
@@ -23,10 +24,12 @@ public class MatchListMain {
                 boolean areNotCoursesWithExcellentReviews = courses.stream()
                                 .noneMatch(course -> course.reviewScore() == 7);
 
+                var comparatorByNumberOfStudents = Comparator.comparing(Course::numberOfStudents, (nro1, nro2) -> {
+                        return Integer.compare(nro1, nro2);
+                });
+
                 var sortedCoursesByNroOfStudents = courses.stream()
-                                .sorted(
-                                                (c1, c2) -> Integer.compare(c1.numberOfStudents(),
-                                                                c2.numberOfStudents()))
+                                .sorted(comparatorByNumberOfStudents)
                                 .toList();
 
                 System.out.println("Has all courses with more than 150 students: " + hasAllCoursesHigherThan150);
