@@ -17,7 +17,8 @@ public class UtilityMethodMain {
                 new Course("Machine Learning", "Data", 3, 200),
                 new Course("Cloud Computing", "Cloud", 5, 250),
                 new Course("Cybersecurity", "Security", 5, 300),
-                new Course("Blockchain Basics", "Blockchain", 5, 350));
+                new Course("Blockchain Basics", "Blockchain", 5, 350),
+                new Course("Blockchain Advanced", "Blockchain", 5, 350));
 
         var firstThreeCourses = courses.stream()
                 .limit(3)
@@ -32,16 +33,21 @@ public class UtilityMethodMain {
                 .toList();
 
         var courseMaxNroStudents = courses.stream()
-                .max(Comparator.comparingInt(Course::numberOfStudents));
+                .max(Comparator.comparingInt(Course::numberOfStudents)).get();
 
         var courseMinNroStudents = courses.stream()
-                .min(Comparator.comparingInt(Course::numberOfStudents));
+                .min(Comparator.comparingInt(Course::numberOfStudents)).get();
+
+        var firstBlockchain = courses.stream()
+                .filter(course -> course.category().equals("Blockchain"))
+                .findFirst().get();
 
         System.out.println("First three courses: " + firstThreeCourses);
         System.out.println("Skipped courses: " + skippedList);
         System.out.println("Courses until a bad review: " + untilABadCourse);
         System.out.println("Max number of students: " + courseMaxNroStudents);
         System.out.println("Min number of students: " + courseMinNroStudents);
+        System.out.println("First Blockchain course: " + firstBlockchain);
 
     }
 
