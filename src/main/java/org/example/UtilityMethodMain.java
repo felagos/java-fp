@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.example.models.Course;
 
@@ -41,6 +42,12 @@ public class UtilityMethodMain {
         var firstBlockchain = courses.stream()
                 .filter(course -> course.category().equals("Blockchain"))
                 .findFirst().get();
+        
+        var coursesGroupedByCategory = courses.stream()
+                .collect(Collectors.groupingBy(Course::category));
+
+        var totalOfCategories = courses.stream()
+                .collect(Collectors.groupingBy(Course::category, Collectors.counting()));
 
         System.out.println("First three courses: " + firstThreeCourses);
         System.out.println("Skipped courses: " + skippedList);
@@ -48,6 +55,8 @@ public class UtilityMethodMain {
         System.out.println("Max number of students: " + courseMaxNroStudents);
         System.out.println("Min number of students: " + courseMinNroStudents);
         System.out.println("First Blockchain course: " + firstBlockchain);
+        System.out.println("Data courses: " + coursesGroupedByCategory);
+        System.out.println("Total of categories: " + totalOfCategories);
 
     }
 
