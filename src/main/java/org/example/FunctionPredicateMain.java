@@ -135,6 +135,22 @@ public class FunctionPredicateMain {
         System.out.println("Are all objects (String, null, Double, Boolean) not null? " + result2);
     }
 
+    private static void testHigherOrderFunction() {
+        Function<Integer, Function<Integer, Integer>> makeAdder = (Integer x) -> (Integer y) -> x + y;
+
+        var addTen = makeAdder.apply(10);
+        int sum = addTen.apply(7); // 10 + 7 = 17
+        System.out.println("makeAdder: 10 + 7 = " + sum);
+
+        Function<Function<Integer, Integer>, Function<Integer, Integer>> applyThenDouble =
+                (Function<Integer, Integer> f) -> (Integer v) -> f.apply(v) * 2;
+
+        Function<Integer, Integer> increment = (i) -> i + 1;
+        var doubledAfterIncrement = applyThenDouble.apply(increment);
+        int value = doubledAfterIncrement.apply(5); 
+        System.out.println("applyThenDouble(increment)(5): " + value);
+    }
+
     public static void main(String[] args) {
         FunctionPredicateMain.testFunction();
         FunctionPredicateMain.testPredicate();
@@ -142,6 +158,8 @@ public class FunctionPredicateMain {
         FunctionPredicateMain.testFunctionAsParameter();
         FunctionPredicateMain.testFunctionDynamicParameters();
         FunctionPredicateMain.testFunctionConcatString();
+
+    FunctionPredicateMain.testHigherOrderFunction();
 
         System.out.println("\n=== Testing Multi Predicates ===");
         FunctionPredicateMain.testMultiPredicateAllEven();
