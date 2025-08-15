@@ -139,7 +139,7 @@ public class FunctionPredicateMain {
         Function<Integer, Function<Integer, Integer>> makeAdder = (Integer x) -> (Integer y) -> x + y;
 
         var addTen = makeAdder.apply(10);
-        int sum = addTen.apply(7); // 10 + 7 = 17
+        int sum = addTen.apply(7);
         System.out.println("makeAdder: 10 + 7 = " + sum);
 
         Function<Function<Integer, Integer>, Function<Integer, Integer>> applyThenDouble =
